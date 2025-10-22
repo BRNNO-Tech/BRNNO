@@ -1,0 +1,39 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "**/*",
+      "use": "@vercel/static"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/",
+      "dest": "/location.html"
+    },
+    {
+      "src": "/service",
+      "dest": "/service.html"
+    },
+    {
+      "src": "/location",
+      "dest": "/location.html"
+    },
+    {
+      "src": "/schedule",
+      "dest": "/schedule.html"
+    },
+    {
+      "src": "/payment",
+      "dest": "/payment.html"
+    },
+    {
+      "src": "/confirmation",
+      "dest": "/confirmation.html"
+    },
+    {
+      "src": "/results",
+      "dest": "/results.html"
+    }
+  ]
+}
