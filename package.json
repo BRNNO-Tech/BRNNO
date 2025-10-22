@@ -1,0 +1,13 @@
+{
+  "name": "brnno-services",
+  "version": "1.0.0",
+  "description": "BRNNO Services - Mobile Auto Detailing Booking System",
+  "main": "location.html",
+  "scripts": {
+    "build": "echo 'No build step needed for static HTML'",
+    "start": "echo 'Static HTML site - serve with any web server'"
+  },
+  "keywords": ["mobile-detailing", "booking", "services"],
+  "author": "BRNNO Team",
+  "license": "MIT"
+}

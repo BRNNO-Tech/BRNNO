@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Detailers Near You • BRNNO</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="flow.css">
+  <style>
+    /* --- Custom layout fixes for this page --- */
+
+    /* White background for content area */
+    .results-section {
+      background: var(--bg);
+      padding: 60px 0;
+    }
+
+    /* Card list layout */
+    .list {
+      display: grid;
+      gap: 16px;
+    }
+
+    .card-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      background: var(--surface);
+      border: 1px solid #e2e8f0;
+      border-radius: var(--radius);
+      padding: 18px 20px;
+      box-shadow: var(--shadow-md);
+    }
+
+    .card-row strong {
+      font-weight: 700;
+      font-size: 1.05rem;
+      color: var(--text);
+    }
+
+    .help {
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+
+    .price {
+      font-weight: 800;
+      font-size: 1.1rem;
+      color: var(--brand-700);
+      white-space: nowrap;
+    }
+
+    /* Smaller “Select” button */
+    .btn-select {
+      border: 2px solid var(--brand-700);
+      background: var(--surface);
+      color: var(--brand-700);
+      font-weight: 700;
+      border-radius: 999px;
+      padding: 8px 16px;
+      font-size: 0.9rem;
+      transition: all 0.25s ease;
+    }
+
+    .btn-select:hover {
+      background: linear-gradient(90deg, var(--hero-from), var(--hero-to));
+      color: var(--surface);
+      border-color: transparent;
+      box-shadow: 0 6px 16px var(--ring);
+      transform: translateY(-2px);
+    }
+
+    @media (max-width: 640px) {
+      .card-row {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+      }
+      .price {
+        align-self: flex-end;
+      }
+      .btn-select {
+        align-self: flex-end;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="container nav">
+      <div class="brand">
+        <span class="logo">
+          <img src="BRNNO_logov3.jpg" alt="BRNNO Logo">
+        </span>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero banner -->
+  <section class="hero">
+    <div class="container">
+      <h1 class="headline">Available Detailers</h1>
+      <p class="sub">Transparent pricing based on your selections.</p>
+
+    <div class="stepbar">
+        <div class="step"><span class="dot">1</span>Location</div><div class="sep"></div>
+        <div class="step"><span class="dot">2</span>Service</div><div class="sep"></div>
+        <div class="step active"><span class="dot">3</span>Detailers</div><div class="sep"></div>
+        <div class="step"><span class="dot">4</span>Schedule</div><div class="sep"></div>
+        <div class="step"><span class="dot">5</span>Payment</div>
+    </div>
+    </div>
+  </section>
+
+  <!-- Results list -->
+ <section class="results-section">
+  <div class="container" style="max-width:860px;">
+    <div class="list">
+
+      <div class="card-row">
+        <div class="info">
+          <strong>ShinePro Mobile</strong> <span class="badge">4.9 ★</span>
+        </div>
+        <div class="price">from $179</div>
+        <a class="btn-select" href="schedule.html?pro=ShinePro">Select</a>
+      </div>
+
+      <div class="card-row">
+        <div class="info">
+          <strong>BlueWave Detailing</strong> <span class="badge">4.8 ★</span>
+        </div>
+        <div class="price">from $139</div>
+        <a class="btn-select" href="schedule.html?pro=BlueWave">Select</a>
+      </div>
+
+      <div class="card-row">
+        <div class="info">
+          <strong>Prime Finish Co.</strong> <span class="badge">5.0 ★</span>
+        </div>
+        <div class="price">from $249</div>
+        <a class="btn-select" href="schedule.html?pro=PrimeFinish">Select</a>
+      </div>
+
+    </div>
+    
+    <!-- Back button -->
+    <div class="actions" style="margin-top: 32px; text-align: center;">
+      <a class="btn-outline" href="service.html">Back to Services</a>
+    </div>
+  </div>
+</section>

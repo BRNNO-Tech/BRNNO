@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Select Service • BRNNO</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="flow.css">
+</head>
+<body>
+  <header>
+    <div class="container nav">
+      <div class="brand">
+        <span class="logo">
+          <img src="BRNNO_logov3.jpg" alt="BRNNO Logo">
+        </span>
+      </div>
+    </div>
+  </header>
+
+  <!-- Gradient banner -->
+  <section class="hero">
+    <div class="container">
+      <h1 class="headline">Select Your Service</h1>
+      <p class="sub">Choose your vehicle and customize the detail you want.</p>
+    </div>
+  </section>
+
+  <!-- White card section (single main-card only) -->
+  <section class="form-section">
+    <div class="container">
+    <div class="stepbar">
+        <div class="step">1</span>Location</div><div class="sep"></div>
+        <div class="step active"><span class="dot">2</span>Service</div><div class="sep"></div>
+        <div class="step"><span class="dot">3</span>Detailers</div><div class="sep"></div>
+        <div class="step"><span class="dot">4</span>Time</div><div class="sep"></div>
+        <div class="step"><span class="dot">5</span>Payment</div>
+    </div>
+
+      <div class="main-card" style="max-width:760px; margin:auto;">
+        <form action="results.html" method="get" class="form-grid">
+          <!-- VEHICLE SELECTION -->
+          <h2 style="margin-top:0;">Select Vehicle</h2>
+          <div class="form-row" style="display:grid; grid-template-columns:1fr 1fr; gap:12px">
+            <div>
+              <label for="vehicle">Vehicle Type</label>
+              <select id="vehicle" name="vehicle" required>
+                <option value="" hidden>Select…</option>
+                <option>Sedan</option>
+                <option>SUV</option>
+                <option>Truck</option>
+                <option>Coupe</option>
+                <option>Van</option>
+              </select>
+            </div>
+            <div>
+              <label for="size">Vehicle Size</label>
+              <select id="size" name="size" required>
+                <option value="" hidden>Select…</option>
+                <option>Compact</option>
+                <option>Standard</option>
+                <option>Large</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- PACKAGE SELECTION -->
+          <h2>Select Package</h2>
+          <div class="form-row">
+            <select id="package" name="package" required>
+              <option value="" hidden>Select…</option>
+              <option value="basic">Basic Wash — Exterior wash & tire shine</option>
+              <option value="interior">Interior Detail — Deep interior clean</option>
+              <option value="exterior">Exterior Detail — Clay, wax, polish</option>
+              <option value="full">Full Detail — Inside & out</option>
+              <option value="premium">Premium — Paint correction & ceramic</option>
+            </select>
+          </div>
+
+          <!-- CUSTOM BUILD SECTION -->
+        <p class="help">Select any additional services you'd like to include.</p>
+
+        <div class="form-row extras-grid">
+            <label><input type="checkbox" name="extras" value="carpet"> Carpet Shampoo</label>
+            <label><input type="checkbox" name="extras" value="seat"> Seat Steam Clean</label>
+            <label><input type="checkbox" name="extras" value="engine"> Engine Bay Clean</label>
+            <label><input type="checkbox" name="extras" value="paint"> Paint Correction</label>
+            <label><input type="checkbox" name="extras" value="ceramic"> Ceramic Coating</label>
+            <label><input type="checkbox" name="extras" value="odor"> Odor Elimination</label>
+            <label><input type="checkbox" name="extras" value="headlight"> Headlight Restoration</label>
+            <label><input type="checkbox" name="extras" value="pet"> Pet Hair Removal</label>
+        </div>
+
+
+          <!-- NOTES -->
+          <div class="form-row">
+            <label for="notes">Additional Notes</label>
+            <textarea id="notes" name="notes" rows="3" placeholder="Anything we should know?"></textarea>
+          </div>
+
+          <div class="actions">
+            <a class="btn-outline" href="location.html">Back</a>
+            <button class="btn-outline" type="submit">See Detailers</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">© <span id="y"></span> BRNNO, Inc.</div>
+  </footer>
+
+  <script>
+    document.getElementById('y').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>

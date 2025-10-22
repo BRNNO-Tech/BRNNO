@@ -1,0 +1,185 @@
+/* Stepper */
+.stepbar {display:flex; gap:8px; align-items:center; justify-content:center; margin:24px 0 32px;}
+.step {display:flex; align-items:center; gap:8px; color:var(--muted); font-weight:700}
+.step .dot{width:28px;height:28px;border-radius:999px;display:grid;place-items:center;background:#e2e8f0;color:#0f172a;font-size:14px}
+.step.active{color:var(--brand-700)}
+.step.active .dot{background:linear-gradient(135deg,var(--hero-from),var(--hero-to)); color:#fff}
+.sep{height:2px;width:40px;background:rgba(15,23,42,.10);border-radius:999px}
+
+.main-card{background:var(--surface);border-radius:var(--radius);box-shadow:var(--shadow-md);padding:24px}
+.form-grid{display:grid;gap:16px}
+.form-row{display:grid;gap:8px}
+label{font-weight:700}
+input, select, textarea{
+  width:100%; padding:12px 14px; border:1px solid #e2e8f0; border-radius:12px; background:#fff; font:inherit;
+}
+.help{color:var(--muted); font-size:14px}
+.actions{display:flex; gap:10px; justify-content:flex-end; margin-top:16px}
+.btn-outline{border:1px solid transparent;border-radius:40px;
+  padding:14px 22px;font-weight:800;background:var(--brand-700);color:#fff;
+  background: linear-gradient(135deg, var(--hero-from), var(--hero-to));}
+.btn-outline:hover{background: var(--brand-800);transform:translateY(-1px);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px var(--ring);}
+.list{display:grid; gap:12px}
+.card-row{display:flex; align-items:center; justify-content:space-between; gap:16px; border:1px solid #e2e8f0; border-radius:12px; padding:14px}
+.price{font-weight:400}
+.badge{padding:4px 8px; border-radius:999px; background:#ecfeff; color:#0e7490; font-weight:700; font-size:12px}
+
+/* Calendar-ish grid (simple) */
+.times{display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:10px}
+.time {border:1px solid #e2e8f0; padding:10px 12px; border-radius:10px; text-align:center; cursor:pointer}
+.time:hover{border-color:var(--brand-700)}
+@media (max-width:640px){ .times{grid-template-columns:repeat(2,minmax(0,1fr))} }
+
+/* Checkbox grid layout */
+.extras-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px 20px;
+}
+
+/* Align checkbox + text neatly */
+.extras-grid label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 500;
+  color: var(--text);
+}
+
+/* Slightly larger checkboxes in brand color */
+.extras-grid input[type="checkbox"] {
+  accent-color: var(--brand-700);
+  width: 18px;
+  height: 18px;
+}
+/* Keep the form area separate from the hero */
+.form-section { padding: 40px 0; }
+
+/* Time chips: radio -> pill buttons */
+.times { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:10px; }
+@media (max-width:640px){ .times{ grid-template-columns:repeat(2,minmax(0,1fr)); } }
+
+.time { cursor:pointer; }
+.time input { position:absolute; opacity:0; pointer-events:none; }
+.time span {
+  display:block; text-align:center; border:2px solid #e2e8f0;
+  border-radius:10px; padding:10px 12px; transition:all .2s ease;
+  background:#fff; color:var(--text); font-weight:600;
+}
+.time input:focus + span { box-shadow:0 0 0 3px var(--ring); border-color:var(--brand-700); }
+.time input:checked + span {
+  border-color:transparent;
+  background:linear-gradient(135deg,var(--hero-from),var(--hero-to));
+  color:var(--surface);
+  box-shadow:0 8px 18px var(--ring);
+}
+
+/* Payment page styling */
+/* ========== PAYMENT PAGE STYLES ========== */
+.payment-section {
+  padding: 60px 0;
+  background: var(--bg);
+}
+
+.payment-card {
+  background: var(--surface);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-md);
+  padding: 32px;
+  max-width: 640px;
+  margin: auto;
+}
+
+.payment-card h2 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--brand-700);
+  margin-bottom: 16px;
+}
+
+.form-grid {
+  display: grid;
+  gap: 18px;
+}
+
+label {
+  display: block;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 6px;
+}
+
+input,
+select {
+  width: 100%;
+  padding: 12px 14px;
+  border: 2px solid #e2e8f0;
+  border-radius: 10px;
+  background: #fff;
+  color: var(--text);
+  font: inherit;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+input:focus,
+select:focus {
+  border-color: var(--brand-700);
+  box-shadow: 0 0 0 3px var(--ring);
+}
+
+/* Side-by-side small fields (expiry + CVV) */
+.inline-fields {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+}
+
+/* Payment card logos */
+.card-icons {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.card-icons img {
+  height: 24px;
+  width: auto;
+  object-fit: contain;
+}
+
+/* Bottom buttons */
+.actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 28px;
+}
+
+/* Confirm & Pay button */
+.btn-primary {
+  display: inline-block;
+  border: none;
+  border-radius: 999px;
+  padding: 14px 24px;
+  font-weight: 800;
+  background: linear-gradient(135deg, var(--hero-from), var(--hero-to));
+  color: var(--surface);
+  box-shadow: var(--shadow-md);
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 18px var(--ring);
+}
+
+/* Mobile adjustments */
+@media (max-width: 640px) {
+  .inline-fields {
+    grid-template-columns: 1fr;
+  }
+}

@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Booking Confirmed • BRNNO</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="flow.css">
+</head>
+<body>
+  <header>
+    <div class="container nav">
+      <div class="brand">
+        <span class="logo">
+          <img src="BRNNO_logov3.jpg" alt="BRNNO Logo">
+        </span>
+      </div>
+    </div>
+  </header>
+
+  <!-- Compact hero -->
+  <section class="hero hero--slim">
+    <div class="container">
+      <div class="confirm-head">
+        <div class="confirm-icon" aria-hidden="true"></div>
+        <div class="confirm-titles">
+          <h1 class="headline">Booking Confirmed</h1>
+          <div class="order-line">
+            <span class="order-id">Order <strong>#BRN<span id="oid">—</span></strong></span>
+            <span class="status-pill">Confirmed</span>
+          </div>
+          <p class="sub">We’ve emailed your confirmation and receipt. Your detailer will text when they’re on the way.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Unified panel -->
+  <section class="confirm-flat">
+    <div class="container">
+      <div class="panel">
+        <!-- Details + Receipt in a single surface -->
+        <div class="panel-grid">
+          <main class="panel-main">
+            <h2 class="section-title">Appointment Details</h2>
+            <div class="kv">
+              <div class="row"><span class="k">Service: </span><span class="v" id="svc">Full Detail</span></div>
+              <div class="row"><span class="k">Provider: </span><span class="v" id="pro">ShinePro Mobile</span></div>
+              <div class="row"><span class="k">Date: </span><span class="v" id="dateVal">Oct 28, 2025</span></div>
+              <div class="row"><span class="k">Time: </span><span class="v" id="timeVal">11:00 AM</span></div>
+              <div class="row"><span class="k">Location: </span><span class="v" id="addr">123 Main St, Denver, CO</span></div>
+            </div>
+
+            <hr class="divider">
+
+            <h3 class="section-subtitle">What to expect</h3>
+            <ul class="bullets">
+              <li>Please ensure vehicle access and keys available.</li>
+              <li>We’ll bring water/power if needed; driveway preferred.</li>
+              <li>Reschedule or cancel from your account up to 24h prior.</li>
+            </ul>
+
+            <hr class="divider">
+
+
+          </main>
+
+          <aside class="panel-side">
+            <h2 class="section-title">Receipt</h2>
+            <div class="kv kv-tight">
+              <div class="row"><span class="k">Service</span><span class="v">$179.00</span></div>
+
+              <div class="row"><span class="k">Tax</span><span class="v">$12.53</span></div>
+              <div class="row total"><span class="k">Total</span><span class="v" id="total">$191.53</span></div>
+            </div>
+          </aside>
+        </div>
+
+        <!-- Clearly separated actions with breathing room -->
+        <div class="btn-row" style="text-align: center;">
+          <a class="btn-primary" href="landing-page.html">Return to Home</a>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">© <span id="y"></span> BRNNO, Inc.</div>
+  </footer>
+
+  <script>
+    const n = Math.floor(100000 + Math.random()*900000);
+    document.getElementById('oid').textContent = n;
+    document.getElementById('y').textContent = new Date().getFullYear();
+
+    const params = new URLSearchParams(location.search);
+    const date = params.get('date');
+    const time = params.get('time');
+    const svc  = params.get('package');
+    const pro  = params.get('pro');
+    const addr = params.get('address') && params.get('city') && params.get('state')
+      ? `${params.get('address')}, ${params.get('city')}, ${params.get('state')}`
+      : null;
+
+    if (date) document.getElementById('dateVal').textContent =
+      new Date(date).toLocaleDateString([], {month:'short', day:'numeric', year:'numeric'});
+    if (time) document.getElementById('timeVal').textContent = time;
+    if (svc)  document.getElementById('svc').textContent = ({
+      basic:'Basic Wash', interior:'Interior Detail', exterior:'Exterior Detail', full:'Full Detail', premium:'Premium Detail'
+    }[svc] || svc);
+    if (pro)  document.getElementById('pro').textContent = pro;
+    if (addr) document.getElementById('addr').textContent = addr;
+
+    document.getElementById('printBtn').addEventListener('click', () => window.print());
+  </script>
+</body>
+</html>

@@ -1,0 +1,233 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Payment • BRNNO</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="flow.css">
+</head>
+<body>
+  <header>
+    <div class="container nav">
+      <div class="brand">
+        <span class="logo">
+          <img src="BRNNO_logov3.jpg" alt="BRNNO Logo">
+        </span>
+      </div>
+    </div>
+  </header>
+
+  <!-- Step indicator -->
+  <section class="hero">
+    <div class="container">
+      <h1 class="headline">Payment Details</h1>
+      <p class="sub">Secure checkout — encrypted and protected.</p>
+
+        <div class="stepbar">
+            <div class="step"><span class="dot">1</span>Location</div><div class="sep"></div>
+            <div class="step"><span class="dot">2</span>Service</div><div class="sep"></div>
+            <div class="step"><span class="dot">3</span>Detailers</div><div class="sep"></div>
+            <div class="step"><span class="dot">4</span>Schedule</div><div class="sep"></div>
+            <div class="step active"><span class="dot">5</span>Payment</div>
+        </div>
+    </div>
+  </section>
+
+  <!-- Payment Form -->
+  <section class="payment-section">
+    <div class="container">
+      <div class="payment-card">
+        <h2>Payment Method</h2>
+        
+        <!-- Service Summary -->
+        <div class="service-summary" style="background: #f8fafc; padding: 20px; border-radius: 12px; margin-bottom: 24px;">
+          <h3 style="margin: 0 0 12px; color: var(--brand-700);">Service Summary</h3>
+          <div id="service-details">
+            <!-- This will be populated by JavaScript from URL parameters -->
+          </div>
+          <div style="border-top: 1px solid #e2e8f0; margin-top: 12px; padding-top: 12px;">
+            <div style="display: flex; justify-content: space-between; font-weight: 700; font-size: 18px;">
+              <span>Total:</span>
+              <span id="total-price">$0.00</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Simple Payment Form -->
+        <form id="payment-form" class="form-grid">
+          <div class="card-icons">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/4/41/Visa_Logo.png" alt="Visa">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/0/04/Mastercard-logo.png" alt="MasterCard">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/b/b7/Stripe_Logo%2C_revised_2016.png" alt="Stripe" style="height: 20px;">
+          </div>
+
+          <div>
+            <label for="email">Email Address</label>
+            <input type="email" id="email" name="email" placeholder="your@email.com" required>
+          </div>
+
+          <div>
+            <label for="name">Full Name</label>
+            <input type="text" id="name" name="name" placeholder="John Doe" required>
+          </div>
+
+          <div>
+            <label for="phone">Phone Number</label>
+            <input type="tel" id="phone" name="phone" placeholder="(555) 123-4567" required>
+          </div>
+
+          <div class="actions">
+            <a class="btn-outline" href="schedule.html">Back</a>
+            <button id="checkout-button" class="btn-primary" type="button">
+              <span id="button-text">Pay with Stripe</span>
+            </button>
+          </div>
+        </form>
+
+        <!-- Instructions for setup -->
+        <div style="background: #f0f9ff; border: 1px solid #0ea5e9; border-radius: 8px; padding: 16px; margin-top: 20px;">
+          <h4 style="margin: 0 0 8px; color: #0c4a6e;">Setup Instructions:</h4>
+          <ol style="margin: 0; padding-left: 20px; font-size: 14px; color: #0c4a6e;">
+            <li>Create a Stripe account at <a href="https://stripe.com" target="_blank" style="color: #0ea5e9;">stripe.com</a></li>
+            <li>Get your publishable key from Stripe Dashboard → API Keys</li>
+            <li>Replace 'YOUR_STRIPE_PUBLISHABLE_KEY' in the script below</li>
+            <li>Set up a webhook to handle successful payments</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stripe.js -->
+  <script src="https://js.stripe.com/v3/"></script>
+  <script>
+    // Replace with your actual Stripe publishable key
+    const stripe = Stripe('YOUR_STRIPE_PUBLISHABLE_KEY');
+
+    // Handle checkout button click
+    document.getElementById('checkout-button').addEventListener('click', async function(event) {
+      event.preventDefault();
+
+      // Get form data
+      const email = document.getElementById('email').value;
+      const name = document.getElementById('name').value;
+      const phone = document.getElementById('phone').value;
+
+      // Validate form
+      if (!email || !name || !phone) {
+        alert('Please fill in all required fields.');
+        return;
+      }
+
+      // Get service details from URL
+      const urlParams = new URLSearchParams(window.location.search);
+      const vehicle = urlParams.get('vehicle') || 'Sedan';
+      const size = urlParams.get('size') || 'Compact';
+      const package = urlParams.get('package') || 'interior';
+      const extras = urlParams.get('extras') || '';
+      const date = urlParams.get('date') || '';
+      const time = urlParams.get('time') || '';
+
+      // Calculate total (same logic as before)
+      let basePrice = 0;
+      switch(package) {
+        case 'interior': basePrice = 75; break;
+        case 'exterior': basePrice = 85; break;
+        case 'full': basePrice = 150; break;
+        default: basePrice = 75;
+      }
+
+      let extrasPrice = 0;
+      if (extras.includes('carpet')) extrasPrice += 25;
+      if (extras.includes('leather')) extrasPrice += 35;
+      if (extras.includes('wax')) extrasPrice += 20;
+
+      const total = basePrice + extrasPrice;
+
+      // Create service description
+      let description = `${package.charAt(0).toUpperCase() + package.slice(1)} Detail for ${vehicle} (${size})`;
+      if (extras) {
+        description += ` with ${extras.replace(/,/g, ', ')}`;
+      }
+      if (date && time) {
+        description += ` on ${date} at ${time}`;
+      }
+
+      try {
+        // Create checkout session (this would normally be done on your server)
+        // For demo purposes, we'll redirect to a simple confirmation
+        // In production, you'd create a checkout session with Stripe
+        
+        // Simulate successful payment for demo
+        const checkoutData = {
+          email: email,
+          name: name,
+          phone: phone,
+          vehicle: vehicle,
+          size: size,
+          package: package,
+          extras: extras,
+          date: date,
+          time: time,
+          total: total,
+          description: description
+        };
+
+        // Store booking data in localStorage for confirmation page
+        localStorage.setItem('bookingData', JSON.stringify(checkoutData));
+        
+        // Redirect to confirmation page
+        window.location.href = 'confirmation.html?payment=success';
+        
+      } catch (error) {
+        console.error('Error:', error);
+        alert('There was an error processing your payment. Please try again.');
+      }
+    });
+
+    // Parse URL parameters and populate service summary
+    function populateServiceSummary() {
+      const urlParams = new URLSearchParams(window.location.search);
+      const vehicle = urlParams.get('vehicle') || 'Sedan';
+      const size = urlParams.get('size') || 'Compact';
+      const package = urlParams.get('package') || 'interior';
+      const extras = urlParams.get('extras') || '';
+      const date = urlParams.get('date') || '';
+      const time = urlParams.get('time') || '';
+
+      // Basic pricing (you can customize this)
+      let basePrice = 0;
+      switch(package) {
+        case 'interior': basePrice = 75; break;
+        case 'exterior': basePrice = 85; break;
+        case 'full': basePrice = 150; break;
+        default: basePrice = 75;
+      }
+
+      // Add extras pricing
+      let extrasPrice = 0;
+      if (extras.includes('carpet')) extrasPrice += 25;
+      if (extras.includes('leather')) extrasPrice += 35;
+      if (extras.includes('wax')) extrasPrice += 20;
+
+      const total = basePrice + extrasPrice;
+
+      document.getElementById('service-details').innerHTML = `
+        <div style="display: grid; gap: 8px;">
+          <div><strong>Vehicle:</strong> ${vehicle} (${size})</div>
+          <div><strong>Package:</strong> ${package.charAt(0).toUpperCase() + package.slice(1)} Detail</div>
+          ${extras ? `<div><strong>Extras:</strong> ${extras.replace(/,/g, ', ')}</div>` : ''}
+          ${date ? `<div><strong>Date:</strong> ${date}</div>` : ''}
+          ${time ? `<div><strong>Time:</strong> ${time}</div>` : ''}
+        </div>
+      `;
+
+      document.getElementById('total-price').textContent = `$${total}.00`;
+    }
+
+    // Initialize the page
+    populateServiceSummary();
+  </script>
+</body>
+</html>

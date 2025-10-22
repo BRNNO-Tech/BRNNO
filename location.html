@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Enter Location • BRNNO</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="flow.css">
+</head>
+<body>
+  <header>
+    <div class="container nav">
+      <div class="brand">
+        <span class="logo"><img src="BRNNO_logov3.jpg" alt="BRNNO Logo"></span>
+      </div>
+    </div>
+  </header>
+
+  <section class="hero" aria-label="Hero">
+    <div class="container">
+      <h1 class="headline">Your Location</h1>
+      <p class="sub">Enter the service location to see available detailers.</p>
+        <div class="stepbar">
+            <div class="step active"><span class="dot">1</span>Location</div><div class="sep"></div>
+            <div class="step"><span class="dot">2</span>Service</div><div class="sep"></div>
+            <div class="step"><span class="dot">3</span>Detailers</div><div class="sep"></div>
+            <div class="step"><span class="dot">4</span>Schedule</div><div class="sep"></div>
+            <div class="step"><span class="dot">5</span>Payment</div>
+        </div>
+
+
+      <div class="container main-card" style="max-width:680px; margin:auto;">
+        <form action="service.html" method="get" class="form-grid">
+          <div class="form-row">
+            <label for="address">Address</label>
+            <input id="address" name="address" placeholder="123 Main St" required>
+          </div>
+          <div class="form-row">
+            <label for="city">City</label>
+            <input id="city" name="city" placeholder="Your city" required>
+          </div>
+          <div class="form-row" style="display:grid; grid-template-columns:2fr 1fr; gap:12px">
+            <div>
+              <label for="state">State</label>
+              <input id="state" name="state" placeholder="CA" required>
+            </div>
+            <div>
+              <label for="zip">ZIP</label>
+              <input id="zip" name="zip" inputmode="numeric" pattern="[0-9]{5}" placeholder="90210" required>
+            </div>
+          </div>
+          <p class="help">We’ll use this to find nearby mobile detailers.</p>
+          <div class="actions">
+            <button class="btn-outline" type="submit">Continue</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+</body>
+</html>

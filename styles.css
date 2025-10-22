@@ -1,0 +1,176 @@
+:root{
+  /* Reuse brand tones from the services page */
+  --brand-700:#1d4ed8; /* primary */
+  --brand-800:#1e40af;
+  --hero-from:#1fc3ec; /* blue */
+  --hero-to:#121df7;   /* blue-violet */
+  --accent:#1d4ed8;    /* provider/secondary */
+  --text:#0f172a;      /* slate-900 */
+  --muted:#64748b;     /* slate-500 */
+  --surface:#ffffff;
+  --bg:#f8fafc;
+  --radius:16px;
+  --shadow-md:0 10px 25px rgba(2,6,23,.06);
+  --ring:rgba(29,78,216,.35);
+  --container:980px;
+}
+
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto;
+  line-height:1.5;
+  color:var(--text);
+  background:var(--bg)
+}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;display:block}
+
+.container{max-width:var(--container);margin:0 auto;padding:0 24px; }
+
+
+header{
+  position:sticky;top:0;z-index:20;
+  background:rgba(255,255,255,.8);
+  backdrop-filter:saturate(160%) blur(8px);
+  border-bottom:1px solid rgba(15,23,42,.06)
+}
+.nav{height:68px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.brand{display:flex;align-items:center;gap:10px;font-weight:800}
+.logo{
+  width:120px;height:36px;border-radius:30px;display:grid;place-items:center;color:#fff;
+  background:linear-gradient(135deg,var(--hero-from),var(--hero-to))
+}
+.logo img{height:40px}
+.nav-actions{display:flex;gap:8px}
+
+.btn{
+  border:1px solid #cbd5e1;
+  border-radius:999px;
+  padding:10px 16px;
+  font-weight:700;
+  background:#fff;
+  transition:background .2s ease,border-color .2s ease,transform .2s ease
+}
+.btn:hover{transform: translateY(-2px);
+  box-shadow: 0 8px 20px var(--ring);}
+
+.btn.signup {
+  background: linear-gradient(135deg, var(--hero-from), var(--hero-to));
+  color: var(--surface);
+  border: none;
+  box-shadow: var(--shadow-md);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.btn.signup:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px var(--ring);
+  background:var(--brand-800);transform:translateY(-1px);
+}
+
+/* Hero */
+.hero{
+  padding:96px 0 56px;
+  background:linear-gradient(135deg,var(--hero-from),var(--hero-to));
+  color:#fff;text-align:center
+  
+}
+.headline{
+  font-weight:700;font-size:clamp(24px,5vw,56px);
+  letter-spacing:-.2px;line-height:1.06;margin:0 0 12px
+}
+.sub{max-width:760px;margin:0 auto 24px;color:rgba(255,255,255,.95)}
+
+/* CTA buttons — white with blue/black lettering */
+.cta{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:14px 22px;
+  font-weight:800;
+  background:var(--surface);
+  color:var(--brand-700); /* blue text */
+  border:2px solid white;
+  border-radius:var(--radius);
+  box-shadow:var(--shadow-md);
+  transition:all .25s ease;
+  margin-right:12px;
+}
+.cta:hover{
+  background:var(--accent);;
+  color:var(--surface);
+  border-color:var(--accent);
+  box-shadow:0 8px 20px var(--ring);
+  transform:translateY(-2px)
+}
+.cta:active{transform:translateY(0);box-shadow:none}
+
+/* Accent variant for provider CTA */
+.cta.provider{
+  color:var(--brand-700);;
+  border-color: white
+}
+.cta.provider:hover{
+  background:var(--accent);
+  color:var(--surface);
+  border-color:var(--accent);
+  box-shadow:0 8px 20px rgba(134, 186, 235, 0.35)
+}
+
+/* Purpose tiles */
+section{padding:56px 0}
+.tiles{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+.tile{
+  background:var(--surface);border-radius:var(--radius);
+  box-shadow:var(--shadow-md);padding:20px;display:grid;gap:8px
+}
+.kicker{font-size:16px;font-weight:800;color:var(--brand-700);letter-spacing:.3px;text-transform:uppercase}
+.kicker2{font-size:14px;font-weight:600;color:black;letter-spacing:.3px;text-transform:uppercase}
+.tile h3{margin:0}
+.tile p{margin:0;color:var(--muted)}
+
+/* How it works (minimal) */
+.center{text-align:center}
+.mb-12{margin-bottom:12px}
+.mb-18{margin-bottom:18px}
+.mb-28{margin-bottom:28px}
+
+.steps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+.step{background:#fff;border:1px solid #e2e8f0;border-radius:var(--radius);padding:18px}
+.num{
+  width:34px;height:34px;border-radius:10px;display:grid;place-items:center;color:#fff;
+  background:linear-gradient(135deg,var(--hero-from),var(--hero-to));font-weight:900;margin-bottom:8px
+}
+.muted{color:var(--muted)}
+
+/* Trust strip (not used on this page yet, kept for reuse) */
+.trust{display:flex;gap:18px;justify-content:center;flex-wrap:wrap;color:#334155}
+.trust .stat{display:flex;gap:8px;align-items:center;background:#fff;border:1px solid #e2e8f0;border-radius:999px;padding:8px 12px;font-weight:700}
+
+/* Final CTA */
+.final{padding:56px 0}
+.card{
+  background:#fff;border-radius:var(--radius);box-shadow:var(--shadow-md);border-width: 2px; border-color: #0f172a;
+  padding:28px;text-align:center
+}
+.btn-primary{
+  display:inline-block;border:1px solid transparent;border-radius:999px;
+  padding:14px 22px;font-weight:800;background:var(--brand-700);color:#fff;
+  background: linear-gradient(135deg, var(--hero-from), var(--hero-to));
+  
+}
+.btn-primary:hover{
+  background:var(--brand-800);transform:translateY(-1px);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px var(--ring);
+}
+
+footer{padding:36px 0;color:#64748b;text-align:center}
+
+/* Responsive */
+@media (max-width:900px){
+  .tiles,.steps{grid-template-columns:1fr 1fr}
+}
+@media (max-width:640px){
+  .tiles,.steps{grid-template-columns:1fr}
+  .cta{width:100%;justify-content:center;margin-right:0;margin-bottom:10px}
+}

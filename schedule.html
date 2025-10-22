@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Schedule • BRNNO</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="flow.css">
+  <style>
+    /* Smooth show/hide for available times */
+    #times {
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+    #times.visible {
+      opacity: 1;
+      pointer-events: auto;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container nav">
+      <div class="brand"><span class="logo"><img src="BRNNO_logov3.jpg" alt="BRNNO Logo"></span></div>
+    </div>
+  </header>
+
+  <!-- Gradient header -->
+  <section class="hero">
+    <div class="container">
+      <h1 class="headline">Pick a date & time</h1>
+      <p class="sub">We’ll confirm availability instantly.</p>
+        <div class="stepbar">
+            <div class="step"><span class="dot">1</span>Location</div><div class="sep"></div>
+            <div class="step"><span class="dot">2</span>Service</div><div class="sep"></div>
+            <div class="step"><span class="dot">3</span>Detailers</div><div class="sep"></div>
+            <div class="step active"><span class="dot">4</span>Schedule</div><div class="sep"></div>
+            <div class="step"><span class="dot">5</span>Payment</div>
+        </div>
+    </div>
+  </section>
+
+  <!-- Form card -->
+  <section class="form-section">
+    <div class="container">
+      <div class="main-card" style="max-width:720px; margin:auto;">
+        <form action="payment.html" method="get" class="form-grid">
+          <div class="form-row" style="display:grid; grid-template-columns:1fr 1fr; gap:12px">
+            <div>
+              <label for="date">Preferred Date</label>
+              <input type="date" id="date" name="date" required>
+            </div>
+            <div>
+              <label>Available Times</label>
+              <div class="times" id="times">
+                <label class="time"><input type="radio" name="time" value="9:00 AM"><span>9:00 AM</span></label>
+                <label class="time"><input type="radio" name="time" value="11:00 AM"><span>11:00 AM</span></label>
+                <label class="time"><input type="radio" name="time" value="1:00 PM"><span>1:00 PM</span></label>
+                <label class="time"><input type="radio" name="time" value="3:00 PM"><span>3:00 PM</span></label>
+                <label class="time"><input type="radio" name="time" value="5:00 PM"><span>5:00 PM</span></label>
+                <label class="time"><input type="radio" name="time" value="6:30 PM"><span>6:30 PM</span></label>
+              </div>
+            </div>
+          </div>
+
+          <div class="actions">
+            <a class="btn-outline" href="service.html">Back</a>
+            <button class="btn-outline" type="submit">Continue to Payment</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    const dateInput = document.getElementById('date');
+    const timesSection = document.getElementById('times');
+
+    // Hide times until a date is selected
+    dateInput.addEventListener('change', () => {
+      if (dateInput.value) {
+        timesSection.classList.add('visible');
+      } else {
+        timesSection.classList.remove('visible');
+      }
+    });
+  </script>
+</body>
+</html>
